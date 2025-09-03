@@ -1,0 +1,26 @@
+#Momentum
+import numpy as np
+def objective(x, y):
+    return x**2.0 + y**2.0
+def derivative(x, y):
+    return np.array([x * 2.0, y * 2.0])
+def momentum_gradient_descent(objective, derivative, bounds, n_iter, learning_rate, momentum):
+    solution = bounds[:, 0] + np.random.rand(len(bounds)) * (bounds[:, 1] - bounds[:, 0])
+    change = 0.0
+    for i in range(n_iter):
+        gradient = derivative(solution[0], solution[1])
+        new_change = learning_rate * gradient + momentum * change
+        solution = solution - new_change
+        change = new_change
+        solution_eval = objective(solution[0], solution[1])
+        print(i, solution, solution_eval)
+    return [solution, solution_eval]
+# Seed the pseudo-random number generator
+np.random.seed(1)
+bounds = np.array([-1.0, 1.0])
+n_iter = 30
+learning_rate = 0.1
+momentum = 0.3
+best, score = momentum_gradient_descent(objective, derivative, bounds, n_iter, learning_rate, momentum)
+print('Done!')
+print('f(%s) = %f' % (best, score))
