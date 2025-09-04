@@ -1,0 +1,31 @@
+Weight Initialization (Xavier)
+
+Prevents neurons from starting too small/large.
+
+Avoids vanishing/exploding gradients, so training is stable.
+
+Helps the model generalize better (reduces underfitting risk).
+
+Adam Optimizer
+
+Adaptive learning rates for each parameter.
+
+Combines Momentum (reduces oscillation, lowers variance) and RMSProp (scales learning rate, lowers bias).
+
+Leads to faster convergence and less chance of overfitting compared to vanilla gradient descent.
+
+Activation Function (Sigmoid / ReLU)
+
+Sigmoid keeps outputs bounded → good for probability tasks.
+
+ReLU avoids vanishing gradient problem (helpful in deep networks).
+
+Proper choice helps balance bias (too simple model) vs. variance (too complex model).
+
+Bias-Variance Balance
+
+Underfitting = high bias → solved by adding hidden layers or neurons.
+
+Overfitting = high variance → solved with better initialization, Adam (regularized updates), and possibly dropout/early stopping (can be added).
+
+This code structure provides a good foundation: stable optimization and balanced training.
