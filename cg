@@ -1,0 +1,33 @@
+import networkx as nx
+
+# Equation: g = (a+b)d-f
+
+# Nodes will be variables and operations.
+nodes = ['a', 'b', 'd', 'f', '+', '*', '-', 'g']
+
+# Edges represent the flow of computation.
+edges = [
+    ('a', '+'),  # a is an input to the a ddition
+    ('b', '+'),  # b is an input to the addition
+    ('+', '*'),  # the result of addition is an input to multiplication
+    ('d', '*'),  # d is an input to multiplication
+    ('*', '-'),  # the result of multiplication is an input to subtraction
+    ('f', '-'),  # f is an input to subtraction
+    ('-', 'g')   # the result of subtraction is the final output g
+]
+
+# Create a directed graph
+G = nx.DiGraph()
+G.add_nodes_from(nodes)
+G.add_edges_from(edges)
+
+print("Nodes:", nodes)
+print("Edges:", edges)
+import matplotlib.pyplot as plt
+
+# Visualize the graph
+plt.figure(figsize=(8, 6))
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True)
+plt.title("Computational Graph for g = (a+b)d-f")
+plt.show()
